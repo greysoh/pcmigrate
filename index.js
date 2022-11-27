@@ -58,6 +58,10 @@ console.log("PCMigrate Internal Build v1\n");
 if (!await Confirm.prompt("Would you like to use the default backup options?")) {
   backupOpts.backupApps = await Confirm.prompt("Would you like to backup your applications?");
   backupOpts.backupShell = await Confirm.prompt("Would you like to backup your desktop preferences?");
+
+  if (!await Confirm.prompt("Would you like to backup the default folders?")) {
+    backupOpts.backupFolders = [];
+  }
   
   console.log("   Here's what folders we're going to backup right now:");
 
@@ -143,7 +147,7 @@ if (backupOpts.backupShell) {
   const backgroundPath = await win32Utils.getWallpaperPath();
   const newWallpaperPath = backupPath + "\\wallpaper." + backgroundPath.split(".")[1];
 
-  await Deno.copyFile(backgroundPath, newWallpaperPath);
+  await Deno.copyFile(backgroundPath, newWallpaperPath.replace(backupPath, ""));
 
   backupData.desktopInfo.wallpaperPath = newWallpaperPath;
 
@@ -203,7 +207,6 @@ console.log("Finalizing backup... (1/4)");
 await Deno.writeTextFile(backupPath + "/backup.json", JSON.stringify(backupData));
 
 console.log("Finalizing backup... (2/4)");
-//await executeShell(["cmd.exe", "/c", "tar.exe", "-a", "-c", "-f", Deno.env.get("TEMP") + "\\backupData.zip", backupPath + "\\*"]);
 
 await runBatch(`@echo off
 cd "${backupPath}"
