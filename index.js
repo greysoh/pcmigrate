@@ -147,7 +147,7 @@ if (backupOpts.backupShell) {
   const backgroundPath = await win32Utils.getWallpaperPath();
   const newWallpaperPath = backupPath + "\\wallpaper." + backgroundPath.split(".")[1];
 
-  await Deno.copyFile(backgroundPath, newWallpaperPath.replace(backupPath, ""));
+  await Deno.copyFile(backgroundPath, newWallpaperPath);
 
   backupData.desktopInfo.wallpaperPath = "\\wallpaper." + backgroundPath.split(".")[1];
 
