@@ -149,7 +149,7 @@ if (backupOpts.backupShell) {
 
   await Deno.copyFile(backgroundPath, newWallpaperPath.replace(backupPath, ""));
 
-  backupData.desktopInfo.wallpaperPath = newWallpaperPath;
+  backupData.desktopInfo.wallpaperPath = "\\wallpaper." + backgroundPath.split(".")[1];
 
   await Deno.mkdir(backupPath + "\\ExplorerBackups");
 
