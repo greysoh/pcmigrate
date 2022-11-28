@@ -53,7 +53,7 @@ const backupData = {
 
 const backupPath = Deno.env.get("TEMP") + "\\backupData";
 
-console.log("PCMigrate Internal Build v1\n");
+console.log("Welcome to PCMigrate! (v0.1.3)\n");
 
 if (!await Confirm.prompt("Would you like to use the default backup options?")) {
   backupOpts.backupApps = await Confirm.prompt("Would you like to backup your applications?");
