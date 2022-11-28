@@ -1,8 +1,5 @@
 # PCMigrate
-Backup-assistant built on Deno
-## WIP
-This is work-in-progress, so please don't use in production, unless you have a death wish.  
-If you do have a death wish, please call the suicide help-line.
+Backup-assistant built on Deno. Still a WIP but I don't really know what to add so not really.
 ## Building
 Install Deno, then run the following command:
 ```
